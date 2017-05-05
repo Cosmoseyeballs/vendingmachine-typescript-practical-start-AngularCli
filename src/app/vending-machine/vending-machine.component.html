@@ -1,0 +1,40 @@
+<h4>machine</h4>
+
+<div class="col-md-8 machine">
+
+    <vm-cells [cells]="cells" [thisCell]="selectedCell" (selectedCell)="select($event)"></vm-cells>
+
+</div>
+
+<div class="col-md-4">
+    <h4>
+        Paid: $
+        <span id="total" >{{paid}}</span>
+        <br/>
+        <br/>
+
+    </h4>
+    <div *ngFor="let coin of acceptedCoins" data-bind="foreach: acceptedCoins">
+        <img (click)="acceptCoin(coin)" [src]="coin.getImageUrl()" [alt]="coin.value">
+        <!--data-bind="attr:{src:getImageUrl(),
+                                alt:value},
+                                click: $parent.acceptCoin"-->
+    </div>
+    <h3 >
+        <div>
+           <!--data-bind="text:product.name"-->
+              {{selectedCell.product.name}}
+        </div>
+        <div>$
+            <span >
+              <!--data-bind="text:product.price"-->
+              {{selectedCell.product.price}}
+            </span>
+        </div>
+    </h3>
+
+    <button class="btn btn-primary payButton" (click)="pay()" 
+            [disabled]="!(paid - selectedCell.product.price >= 0 && selectedCell.product.price != 0 )" >
+      <!--data-bind="enable:canPay, click:pay"-->
+      Pay</button>
+</div>

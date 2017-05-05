@@ -1,0 +1,22 @@
+<!--<div class="col-md-4 cell" 
+            *ngFor="let cell of cells" >
+           <h2 (click)="selectCell(cell)"  >{{cell.product.name}}</h2>
+</div>-->
+
+<div class="col-md-4 cell" 
+        *ngFor="let cell of cells" 
+        (click)="selectCell(cell)" 
+        [ngClass]="{'sold': cell.sold, 'selected': thisCell == cell }" >
+            <!--data-bind="click: $parent.select, css:{selected:$parent.selectedCell().product == $data.product, sold:sold}"-->
+
+    <div class="col-md-6 image">
+        <img [src]="cell.product.category.getImageUrl()" [alt]="cell.product.category.name">
+         <!--data-bind="attr:{src:product.category.getImageUrl(), 
+                            alt:product.category.name}"-->
+    </div>
+    <div class="col-md-6 productInfo">
+        <div >{{cell.product.name}}</div>
+        <h4 >stock: {{cell.stock}}</h4>
+        <h3 >${{cell.product.price}}</h3>
+    </div>
+</div>
